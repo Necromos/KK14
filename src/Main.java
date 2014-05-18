@@ -2,6 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 public class Main extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel Label;
 	private JButton button;
 	
