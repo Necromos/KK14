@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 public class Main extends JFrame {
+
 	public static void main (String args[]){
 		Main gui = new Main();
 		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
