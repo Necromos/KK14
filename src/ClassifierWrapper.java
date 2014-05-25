@@ -39,7 +39,9 @@ public class ClassifierWrapper {
 		double correct = 0;
  
 		for (int i = 0; i < predictions.size(); i++) {
+			System.out.println(predictions.elementAt(i));
 			NominalPrediction np = (NominalPrediction) predictions.elementAt(i);
+			System.out.println(np.predicted() + " " + np.actual());
 			if (np.predicted() == np.actual()) {
 				correct++;
 			}
@@ -59,12 +61,12 @@ public class ClassifierWrapper {
 		return split;
 	}
  
-	public static void main(String[] args) throws Exception {
-		BufferedReader datafile = readDataFile("D:/breast-cancer.arff");
+	public double start() throws Exception {
+		BufferedReader datafile = readDataFile("D:/soybean.arff");
 		
 		Instances data = new Instances(datafile);
 		data.setClassIndex(data.numAttributes() - 1);
-		BufferedReader testFile = readDataFile("D:/breast-cancer-test.arff");
+		BufferedReader testFile = readDataFile("D:/soybean-test.arff");
 		Instances test = new Instances(testFile);
 		test.setClassIndex(test.numAttributes() - 1);
 		// Do 10-split cross validation
@@ -83,6 +85,7 @@ public class ClassifierWrapper {
 		};
  
 		// Run for each model
+		double sum = 0.0;
 		for (int j = 0; j < models.length; j++) {
  
 			// Collect every group of predictions for current model in a FastVector
@@ -96,17 +99,21 @@ public class ClassifierWrapper {
  
 				// Uncomment to see the summary for each training-testing pair.
 				//System.out.println(models[j].toString());
+				
 			//}
  
 			// Calculate overall accuracy of current classifier on all splits
-			double accuracy = calculateAccuracy(predictions);
- 
+			//double accuracy = calculateAccuracy(predictions);
+			NominalPrediction np = (NominalPrediction) predictions.elementAt(0);
+			sum += np.predicted()+1;
 			// Print current classifier's name and accuracy in a complicated,
 			// but nice-looking way.
-			System.out.println("Accuracy of " + models[j].getClass().getSimpleName() + ": "
-					+ accuracy
-					+ "\n---------------------------------");
+//			System.out.println("Accuracy of " + models[j].getClass().getSimpleName() + ": "
+//					+ accuracy
+//					+ "\n---------------------------------");
 		}
+		
+		return sum/4;
  
 	}
 }
