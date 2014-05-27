@@ -1,5 +1,13 @@
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Checkbox;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 public class Main extends JFrame {
 
 	/**
@@ -8,25 +16,58 @@ public class Main extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel Label;
+	private JLabel user;
 	private JButton button;
+	private JButton button2;
 	
 	public Main()	{
 		setLayout(new FlowLayout());
+		final Checkbox check1 = new Checkbox("8h sleep");
+		final Checkbox check2 = new Checkbox("regular eating");
+		final Checkbox check3 = new Checkbox("fun with friends");
+		final Checkbox check4 = new Checkbox("alkohol");
+		final Checkbox check5 = new Checkbox("cigarets");
+		final Checkbox check6 = new Checkbox("sweets");
+		final Checkbox check7 = new Checkbox("play on computer/consol");
+		final Checkbox check8 = new Checkbox("play outside");
 		Label = new JLabel("Do you want to feel good? :)");
 		add(Label);
-		setLayout(new GridLayout(12, 1));
-		add(new Checkbox("8h sleep"));
-		add(new Checkbox("regular eating"));
-		add(new Checkbox("fun with friends"));
-		add(new Checkbox("alkohol"));
-		add(new Checkbox("cigarets"));
-		add(new Checkbox("sweets"));
-		add(new Checkbox("play on computer/consol"));
-		add(new Checkbox("play outside"));
-		add(new JTextField("Coœ dodaæ?", 25));
+		user = new JLabel("Nazwa u¿ytkownika:");
+		add(user);
+		final JTextField user = new JTextField("" , 2);
+		add(user);
+		setLayout(new GridLayout(16, 1));
+		add(check1);
+		add(check2);
+		add(check3);
+		add(check4);
+		add(check5);
+		add(check6);
+		add(check7);
+		add(check8);
+		// sprawdzanie wartosci checkbox'ów
+		// String.valueOf(check1.getState())
+		final JTextField text = new JTextField("" , 2);
+		add(new JLabel("Podaj swoje samopoczucie od 1 do 5"));
+		add(text);
 		
 		button = new JButton("Check!");
 		add(button);
+		
+		button2 = new JButton("Save");
+		add(button2);
+		button.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				String save = String.valueOf(check1.getState())+","+String.valueOf(check2.getState())+","+String.valueOf(check3.getState())+","+String.valueOf(check4.getState())+","+String.valueOf(check5.getState())+","+String.valueOf(check6.getState())+","+String.valueOf(check7.getState())+","+String.valueOf(check8.getState())+","+text.getText();
+				
+			}
+			
+		});
+		String alert = "";
+		add(new JLabel(alert));
 	}
 	
 	public static void main (String args[]){

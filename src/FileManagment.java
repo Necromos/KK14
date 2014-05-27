@@ -20,13 +20,14 @@ public class FileManagment {
 			PrintWriter writer = new PrintWriter(filename+".arff","UTF-8");
 			writer.println("@RELATION dayfeel");
 			writer.println("");
-			writer.println("@ATTRIBUTE papierosy {'true', 'false'}");
-			writer.println("@ATTRIBUTE sport {'true', 'false'}");
 			writer.println("@ATTRIBUTE sleeptime8h {'true', 'false'}");
 			writer.println("@ATTRIBUTE regularfoodtime {'true', 'false'}");
-			writer.println("@ATTRIBUTE coffe {'true', 'false'}");
-			writer.println("@ATTRIBUTE drugs {'true', 'false'}");
-			writer.println("@ATTRIBUTE friendmeet {'true', 'false'}");
+			writer.println("@ATTRIBUTE funfriends {'true', 'false'}");
+			writer.println("@ATTRIBUTE alkohol {'true', 'false'}");
+			writer.println("@ATTRIBUTE cigarets {'true', 'false'}");
+			writer.println("@ATTRIBUTE sweets {'true', 'false'}");
+			writer.println("@ATTRIBUTE playcomputer {'true', 'false'}");
+			writer.println("@ATTRIBUTE playoutside {'true', 'false'}");
 			writer.println("@ATTRIBUTE class {'1', '2', '3', '4', '5'}");
 			
 			writer.println("");
