@@ -1,0 +1,15 @@
+@RELATION dayfeel
+
+@ATTRIBUTE sleeptime8h {true, false}
+@ATTRIBUTE regularfoodtime {true, false}
+@ATTRIBUTE funfriends {true, false}
+@ATTRIBUTE alkohol {true, false}
+@ATTRIBUTE cigarets {true, false}
+@ATTRIBUTE sweets {true, false}
+@ATTRIBUTE playcomputer {true, false}
+@ATTRIBUTE playoutside {true, false}
+@ATTRIBUTE class {1, 2, 3, 4, 5}
+
+@DATA
+
+true,true,true,true,true,true,true,true,1

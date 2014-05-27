@@ -13,6 +13,8 @@ import weka.core.Instances;
 
 public class ClassifierWrapper {
 	
+	ClassifierWrapper() {}
+	
 	public static BufferedReader readDataFile(String filename) {
 		BufferedReader inputReader = null;
  
@@ -61,12 +63,12 @@ public class ClassifierWrapper {
 		return split;
 	}
  
-	public double start() throws Exception {
-		BufferedReader datafile = readDataFile("D:/soybean.arff");
+	public double start(String filename) throws Exception {
+		BufferedReader datafile = readDataFile(filename+".arff");
 		
 		Instances data = new Instances(datafile);
 		data.setClassIndex(data.numAttributes() - 1);
-		BufferedReader testFile = readDataFile("D:/soybean-test.arff");
+		BufferedReader testFile = readDataFile("test.arff");
 		Instances test = new Instances(testFile);
 		test.setClassIndex(test.numAttributes() - 1);
 		// Do 10-split cross validation

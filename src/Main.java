@@ -51,23 +51,43 @@ public class Main extends JFrame {
 		add(new JLabel("Podaj swoje samopoczucie od 1 do 5"));
 		add(text);
 		
+		final JLabel res = new JLabel();
+		add(res);
+		
 		button = new JButton("Check!");
 		add(button);
 		
+		button.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				FileManagment fm = new FileManagment();
+				String save = String.valueOf(check1.getState())+","+String.valueOf(check2.getState())+","+String.valueOf(check3.getState())+","+String.valueOf(check4.getState())+","+String.valueOf(check5.getState())+","+String.valueOf(check6.getState())+","+String.valueOf(check7.getState())+","+String.valueOf(check8.getState());
+				fm.addNewDayToDocument("test", save);
+				ClassifierWrapper cw = new ClassifierWrapper();
+				try {
+					res.setText(String.valueOf(cw.start(user.getText())));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		
 		button2 = new JButton("Save");
 		add(button2);
-		button.addActionListener(new ActionListener(){
+		button2.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				String save = String.valueOf(check1.getState())+","+String.valueOf(check2.getState())+","+String.valueOf(check3.getState())+","+String.valueOf(check4.getState())+","+String.valueOf(check5.getState())+","+String.valueOf(check6.getState())+","+String.valueOf(check7.getState())+","+String.valueOf(check8.getState())+","+text.getText();
-				
+				FileManagment fm = new FileManagment();
+				fm.addNewDayToDocument(user.getText(), save);
 			}
 			
 		});
-		String alert = "";
-		add(new JLabel(alert));
 	}
 	
 	public static void main (String args[]){
