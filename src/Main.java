@@ -1,13 +1,8 @@
-import java.awt.Checkbox;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.text.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 public class Main extends JFrame {
 
 	/**
@@ -16,7 +11,7 @@ public class Main extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel Label;
-	private JLabel user;
+	private JLabel user1;
 	private JButton button;
 	private JButton button2;
 	
@@ -32,10 +27,15 @@ public class Main extends JFrame {
 		final Checkbox check8 = new Checkbox("play outside");
 		Label = new JLabel("Do you want to feel good? :)");
 		add(Label);
-		user = new JLabel("Nazwa u¿ytkownika:");
+		user1 = new JLabel("Nazwa u¿ytkownika:");
+		add(user1);
+		final String nazwa = "User";
+		final JTextField user = new JTextField(nazwa , 16);
+
+		Document document = user.getDocument();
+		document.addDocumentListener(new JButtonStateController(button2));
 		add(user);
-		final JTextField user = new JTextField("" , 2);
-		add(user);
+		 
 		setLayout(new GridLayout(16, 1));
 		add(check1);
 		add(check2);
@@ -53,10 +53,9 @@ public class Main extends JFrame {
 		
 		final JLabel res = new JLabel();
 		add(res);
-		
 		button = new JButton("Check!");
 		add(button);
-		
+	//	button.setEnabled(false);
 		button.addActionListener(new ActionListener(){
 
 			@Override
@@ -77,10 +76,14 @@ public class Main extends JFrame {
 		
 		button2 = new JButton("Save");
 		add(button2);
+		//button2.setEnabled(nazwa.length() > 0);	
+		
 		button2.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
+					
 				// TODO Auto-generated method stub
 				String save = String.valueOf(check1.getState())+","+String.valueOf(check2.getState())+","+String.valueOf(check3.getState())+","+String.valueOf(check4.getState())+","+String.valueOf(check5.getState())+","+String.valueOf(check6.getState())+","+String.valueOf(check7.getState())+","+String.valueOf(check8.getState())+","+text.getText();
 				FileManagment fm = new FileManagment();
