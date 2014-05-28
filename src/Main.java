@@ -1,15 +1,19 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.text.*;
+import java.awt.Checkbox;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 public class Main extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
 	private JLabel Label;
 	private JLabel user1;
 	private JButton button;
@@ -20,22 +24,18 @@ public class Main extends JFrame {
 		final Checkbox check1 = new Checkbox("8h sleep");
 		final Checkbox check2 = new Checkbox("regular eating");
 		final Checkbox check3 = new Checkbox("fun with friends");
-		final Checkbox check4 = new Checkbox("alkohol");
+		final Checkbox check4 = new Checkbox("alcohol");
 		final Checkbox check5 = new Checkbox("cigarets");
 		final Checkbox check6 = new Checkbox("sweets");
 		final Checkbox check7 = new Checkbox("play on computer/consol");
 		final Checkbox check8 = new Checkbox("play outside");
 		Label = new JLabel("Do you want to feel good? :)");
 		add(Label);
-		user1 = new JLabel("Nazwa u¿ytkownika:");
+		user1 = new JLabel("User name:");
 		add(user1);
 		final String nazwa = "User";
 		final JTextField user = new JTextField(nazwa , 16);
-
-		Document document = user.getDocument();
-		document.addDocumentListener(new JButtonStateController(button2));
 		add(user);
-		 
 		setLayout(new GridLayout(16, 1));
 		add(check1);
 		add(check2);
@@ -45,17 +45,15 @@ public class Main extends JFrame {
 		add(check6);
 		add(check7);
 		add(check8);
-		// sprawdzanie wartosci checkbox'ów
-		// String.valueOf(check1.getState())
-		final JTextField text = new JTextField("" , 2);
-		add(new JLabel("Podaj swoje samopoczucie od 1 do 5"));
+		final String ocena = "";
+		final JTextField text = new JTextField(ocena , 2);
+		add(new JLabel("Your mood from 1 to 5"));
 		add(text);
 		
 		final JLabel res = new JLabel();
 		add(res);
 		button = new JButton("Check!");
 		add(button);
-	//	button.setEnabled(false);
 		button.addActionListener(new ActionListener(){
 
 			@Override
@@ -76,8 +74,39 @@ public class Main extends JFrame {
 		
 		button2 = new JButton("Save");
 		add(button2);
-		//button2.setEnabled(nazwa.length() > 0);	
-		
+		button2.setEnabled(false);
+		text.getDocument().addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				warn();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				warn();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				warn();
+			}
+			
+			public void warn(){
+				try{
+				if(Integer.parseInt(text.getText()) > 0 && Integer.parseInt(text.getText()) < 6)
+					button2.setEnabled(true);
+				else
+					button2.setEnabled(false);
+				}
+				catch (Exception e){
+					button2.setEnabled(false);
+				}
+			}
+			
+		});
+		Document document = user.getDocument();
+		document.addDocumentListener(new JButtonStateController(button2));		/* dzia³a */
 		button2.addActionListener(new ActionListener(){
 
 			@Override

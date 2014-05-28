@@ -1,9 +1,6 @@
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
 
 class JButtonStateController implements DocumentListener {
  JButton button;
@@ -25,6 +22,6 @@ class JButtonStateController implements DocumentListener {
   }
 
   public void disableIfEmpty(DocumentEvent e) {
-    button.setEnabled(e.getLength() > 0);
+    button.setEnabled(e.getDocument().getLength() > 0);
   }
 }
